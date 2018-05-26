@@ -1,0 +1,10 @@
+.mat-select.fs-select-button {
+  max-width: 150px;
+
+  &:not(.mat-basic) {
+    .mat-select-arrow,
+    .mat-select-value {
+      color: #fff;
+    }
+  }
+}

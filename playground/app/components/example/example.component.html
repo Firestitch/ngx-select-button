@@ -1,0 +1,14 @@
+<h2>Basic</h2>
+<mat-select [(ngModel)]="basic" fsSelectButton color="basic">
+  <mat-option *ngFor="let item of values" [value]="item.value">
+    {{ item.name }}
+  </mat-option>
+</mat-select>
+
+
+<h2>Primary</h2>
+<mat-select [(ngModel)]="primary" fsSelectButton color="primary">
+  <mat-option *ngFor="let item of values" [value]="item.value">
+    {{ item.name }}
+  </mat-option>
+</mat-select>
