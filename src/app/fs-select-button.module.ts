@@ -1,10 +1,10 @@
-import './styles.scss';
-
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FsSelectButtonDirective } from './directives';
-import { MatSelectModule, MatButtonModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+
+import { FsSelectButtonDirective } from './directives/select-button/select-button.directive';
+
 
 @NgModule({
   imports: [
@@ -22,9 +22,9 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class FsSelectButtonModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: FsSelectButtonModule
-    };
-  }
+  // static forRoot(): ModuleWithProviders {
+  //   return {
+  //     ngModule: FsSelectButtonModule
+  //   };
+  // }
 }

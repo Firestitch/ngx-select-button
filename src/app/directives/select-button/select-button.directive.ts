@@ -9,7 +9,7 @@ export class FsSelectButtonDirective implements OnInit{
 
   constructor(private renderer: Renderer2, private hostElement: ElementRef) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.renderer.addClass(this.hostElement.nativeElement, 'mat-raised-button');
     this.renderer.addClass(this.hostElement.nativeElement, 'mat-' + this.color);
     this.renderer.addClass(this.hostElement.nativeElement, 'fs-select-button');

@@ -1,17 +1,20 @@
-import './styles.scss';
-
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app/app.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { FsSelectButtonModule } from '../src';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppMaterialModule } from './app/material.module';
-import { FsExampleModule } from '@firestitch/example';
 import { MatButtonModule } from '@angular/material';
+
+import { FsSelectButtonModule } from '@firestitch/select-button';
+import { FsExampleModule } from '@firestitch/example';
+import { FsMessageModule } from '@firestitch/message';
+
+import { ToastrModule } from 'ngx-toastr';
+
+import { AppComponent } from './app.component';
+import { AppMaterialModule } from './material.module';
 import {  ExampleComponent,
-          ExamplesComponent } from './app/components';
+          ExamplesComponent } from './components';
 
 
 const routes: Routes = [
@@ -26,9 +29,11 @@ const routes: Routes = [
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
-    FsExampleModule,
     MatButtonModule,
     RouterModule.forRoot(routes),
+    FsMessageModule.forRoot(),
+    FsExampleModule.forRoot(),
+    ToastrModule.forRoot({ preventDuplicates: true }),
   ],
   entryComponents: [
   ],
