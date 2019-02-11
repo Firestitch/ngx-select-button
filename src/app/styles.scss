@@ -1,5 +1,8 @@
 .mat-select.fs-select-button {
-  max-width: 150px;
+
+  .mat-select-placeholder {
+    color: inherit;
+  }
 
   &:not(.mat-basic) {
     .mat-select-arrow,

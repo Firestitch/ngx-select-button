@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Directive, Input, ElementRef, Renderer2, OnInit, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[fsSelectButton]'
@@ -6,6 +6,11 @@ import { Directive, Input, ElementRef, Renderer2, OnInit } from '@angular/core';
 export class FsSelectButtonDirective implements OnInit{
   @Input() ngModel;
   @Input() color = 'basic';
+  @Input('width') set setWidth(width) {
+    this.width = width;
+  };
+
+  @HostBinding('style.max-width') width  = '150px';
 
   constructor(private renderer: Renderer2, private hostElement: ElementRef) {}
 
