@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material';
 import { FsSelectButtonModule } from '@firestitch/select-button';
 import { FsExampleModule } from '@firestitch/example';
 import { FsMessageModule } from '@firestitch/message';
+import { FsDrawerModule } from '@firestitch/drawer';
+import { FsLabelModule } from '@firestitch/label';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -15,6 +17,7 @@ import { AppComponent } from './app.component';
 import { AppMaterialModule } from './material.module';
 import {  ExampleComponent,
           ExamplesComponent } from './components';
+import { ConfigureComponent } from './components/configure';
 
 
 const routes: Routes = [
@@ -30,17 +33,22 @@ const routes: Routes = [
     AppMaterialModule,
     FormsModule,
     MatButtonModule,
+    MatButtonModule,
+    FsDrawerModule.forRoot(),
+    FsLabelModule,
     RouterModule.forRoot(routes),
     FsMessageModule.forRoot(),
     FsExampleModule.forRoot(),
     ToastrModule.forRoot({ preventDuplicates: true }),
   ],
   entryComponents: [
+    ConfigureComponent
   ],
   declarations: [
     AppComponent,
     ExamplesComponent,
-    ExampleComponent
+    ExampleComponent,
+    ConfigureComponent
   ],
   providers: [
   ],

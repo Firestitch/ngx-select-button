@@ -1,6 +1,11 @@
 .mat-select.fs-select-button {
 
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+
   .mat-select-placeholder {
+    margin-right: 10px;
     color: inherit;
   }
 
@@ -9,5 +14,15 @@
     .mat-select-value {
       color: #fff;
     }
+  }
+
+  .mat-select-value {
+    max-width: initial;
+  }
+
+  .mat-select-value-text {
+    max-width: 150px;
+    display: block;
+    margin-right: 10px;
   }
 }

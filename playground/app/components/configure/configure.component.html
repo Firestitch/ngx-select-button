@@ -1,0 +1,18 @@
+<div fsDrawerContent>
+
+  <h2>Configure</h2>
+
+  <div fxLayout="column">
+    <mat-form-field>
+      <mat-label>Color</mat-label>
+      <mat-select [(ngModel)]="config.color" name="color" (ngModelChange)="change()">
+        <mat-option value="primary">Primary</mat-option>
+        <mat-option value="basic">Basic</mat-option>
+        <mat-option value="accent">Accent</mat-option>
+        <mat-option value="warn">Warn</mat-option>
+        <mat-option value="#141CC5">Custom Color</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</div>

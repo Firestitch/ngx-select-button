@@ -1,14 +1,7 @@
-<h2>Basic</h2>
-<mat-select [(ngModel)]="basic" fsSelectButton color="basic" placeholder="Unselected" width="200px">
-  <mat-option *ngFor="let item of values" [value]="item.value">
-    {{ item.name }}
-  </mat-option>
-</mat-select>
-
-
-<h2>Primary</h2>
-<mat-select [(ngModel)]="primary" fsSelectButton color="primary" placeholder="Unselected">
-  <mat-option *ngFor="let item of values" [value]="item.value">
-    {{ item.name }}
-  </mat-option>
-</mat-select>
+<div *ngIf="!config.hide">
+  <mat-select [(ngModel)]="basic" fsSelectButton [color]="config.color" placeholder="Unselected">
+    <mat-option *ngFor="let item of values" [value]="item.value">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
+</div>
