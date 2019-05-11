@@ -15,12 +15,4 @@ export class ConfigureComponent {
               @Inject(DRAWER_DATA) public data: DrawerDataProxy<any>) {
     this.config = data.config;
   }
-
-  change() {
-    this.config.hide =  true;
-
-    setTimeout(() => {
-      this.config.hide = false;
-    });
-  }
 }
