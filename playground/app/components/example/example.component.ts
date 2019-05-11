@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { ConfigureComponent } from '../configure';
 import { FsExampleComponent } from '@firestitch/example';
+import { ConfigureComponent } from '../configure';
 
 @Component({
   selector: 'example',
@@ -18,13 +18,12 @@ export class ExampleComponent implements AfterViewInit {
     {value: 'sour', name: 'Low Fat Sour Cream'}
   ];
 
-  public config = { color: 'primary' };
+  public config: any = { color: 'primary' };
 
   constructor(private example: FsExampleComponent) {}
 
   ngAfterViewInit() {
     setTimeout(() => {
-      debugger;
     this.example.setConfigureComponent(ConfigureComponent, {
       config: this.config
     });
