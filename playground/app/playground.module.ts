@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 
 import { FsSelectButtonModule } from '@firestitch/select-button';
 import { FsExampleModule } from '@firestitch/example';
@@ -34,7 +34,7 @@ const routes: Routes = [
     FormsModule,
     MatButtonModule,
     MatButtonModule,
-    FsDrawerModule.forRoot(),
+    FsDrawerModule,
     FsLabelModule,
     RouterModule.forRoot(routes),
     FsMessageModule.forRoot(),
