@@ -1,5 +1,25 @@
-<div *ngIf="!config.hide">
-  <mat-select [(ngModel)]="basic" fsSelectButton [color]="config.color" placeholder="Unselected">
+<div fxLayout="row" fxLayoutGap="10px">
+  <mat-select [(ngModel)]="basic" fsSelectButton placeholder="Unselected">
+    <mat-option *ngFor="let item of values" [value]="item.value">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
+  <mat-select [(ngModel)]="basic" fsSelectButton [color]="Color.Primary" placeholder="Unselected">
+    <mat-option *ngFor="let item of values" [value]="item.value">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
+  <mat-select [(ngModel)]="basic" fsSelectButton [color]="Color.Accent" placeholder="Unselected">
+    <mat-option *ngFor="let item of values" [value]="item.value">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
+  <mat-select [(ngModel)]="basic" fsSelectButton [color]="Color.Warn" placeholder="Unselected">
+    <mat-option *ngFor="let item of values" [value]="item.value">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
+  <mat-select [(ngModel)]="basic" fsSelectButton [color]="'#a0041e'" placeholder="Unselected">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>

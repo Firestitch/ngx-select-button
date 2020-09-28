@@ -1,15 +1,15 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { FsExampleComponent } from '@firestitch/example';
-import { ConfigureComponent } from '../configure';
+import { Component } from '@angular/core';
+
+import { Color } from '@firestitch/select-button';
+
 
 @Component({
   selector: 'example',
-  templateUrl: 'example.component.html'
+  templateUrl: 'example.component.html',
 })
-export class ExampleComponent implements AfterViewInit {
+export class ExampleComponent {
 
-  public basic;
-  public primary;
+  public basic = null;
 
   public values = [
     {value: 'steak', name: 'Steak'},
@@ -18,15 +18,8 @@ export class ExampleComponent implements AfterViewInit {
     {value: 'sour', name: 'Low Fat Sour Cream'}
   ];
 
-  public config: any = { color: 'primary' };
+  public Color = Color;
 
-  constructor(private example: FsExampleComponent) {}
+  constructor() { }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-    this.example.setConfigureComponent(ConfigureComponent, {
-      config: this.config
-    });
-  });
-  }
 }

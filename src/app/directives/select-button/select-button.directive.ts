@@ -1,9 +1,7 @@
 import { Directive, Input, ElementRef, Renderer2, OnInit, HostBinding } from '@angular/core';
 
-const enum ColorType {
-  Klass = 'klass',
-  Style = 'style',
-}
+import { ColorType, Color } from '../../enums';
+
 
 @Directive({
   selector: '[fsSelectButton]'
@@ -11,7 +9,7 @@ const enum ColorType {
 export class FsSelectButtonDirective implements OnInit {
 
   @Input()
-  set color(value) {
+  set color(value: Color | string) {
     if (!value) {
       return;
     }
@@ -27,6 +25,8 @@ export class FsSelectButtonDirective implements OnInit {
       this.renderer.addClass(this.hostElement.nativeElement, 'mat-' + value);
       this._colorType = ColorType.Klass;
     }
+
+    this._textColorUpdate();
   }
 
   @Input('width')
@@ -37,14 +37,15 @@ export class FsSelectButtonDirective implements OnInit {
   @HostBinding('style.max-width')
   public width  = '';
 
-  private _color: string;
-  private _colorType: ColorType;
+  private _color: Color | string = Color.Basic;
+  private _colorType: ColorType = null;
 
-  constructor(private renderer: Renderer2, private hostElement: ElementRef) {}
+  constructor(private renderer: Renderer2, private hostElement: ElementRef) { }
 
   public ngOnInit() {
     this.renderer.addClass(this.hostElement.nativeElement, 'mat-raised-button');
     this.renderer.addClass(this.hostElement.nativeElement, 'fs-select-button');
+    this._textColorUpdate();
   }
 
   private _clearColor() {
@@ -54,7 +55,25 @@ export class FsSelectButtonDirective implements OnInit {
       this.renderer.removeStyle(this.hostElement.nativeElement, 'background-color');
     }
 
-    this._color = void 0;
-    this._colorType = void 0;
+    this._color = null;
+    this._colorType = null;
+  }
+
+  private _textColorUpdate() {
+
+    const value = this.hostElement.nativeElement.querySelector('.mat-select-trigger .mat-select-value');
+    const arrow = this.hostElement.nativeElement.querySelector('.mat-select-arrow-wrapper .mat-select-arrow');
+
+    let textColor = null;
+    switch (this._color) {
+      case Color.Basic:
+        textColor = 'initial';
+        break;
+      default:
+        textColor = '#fff';
+    }
+
+    this.renderer.setStyle(value, 'color', textColor);
+    this.renderer.setStyle(arrow, 'color', textColor);
   }
 }
