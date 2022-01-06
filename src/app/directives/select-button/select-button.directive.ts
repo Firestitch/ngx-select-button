@@ -1,4 +1,13 @@
-import { Directive, Input, ElementRef, Renderer2, OnInit, HostBinding } from '@angular/core';
+import {
+  Directive,
+  Input,
+  ElementRef,
+  Renderer2,
+  OnInit,
+  HostBinding,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 import { ColorType, Color } from '../../enums';
 
@@ -6,7 +15,7 @@ import { ColorType, Color } from '../../enums';
 @Directive({
   selector: '[fsSelectButton]'
 })
-export class FsSelectButtonDirective implements OnInit {
+export class FsSelectButtonDirective implements OnInit, OnChanges {
 
   @Input()
   set color(value: Color | string) {
@@ -25,8 +34,6 @@ export class FsSelectButtonDirective implements OnInit {
       this.renderer.addClass(this.hostElement.nativeElement, 'mat-' + value);
       this._colorType = ColorType.Klass;
     }
-
-    this._textColorUpdate();
   }
 
   @Input('width')
@@ -46,6 +53,12 @@ export class FsSelectButtonDirective implements OnInit {
     this.renderer.addClass(this.hostElement.nativeElement, 'mat-raised-button');
     this.renderer.addClass(this.hostElement.nativeElement, 'fs-select-button');
     this._textColorUpdate();
+  }
+
+  public ngOnChanges(changes: SimpleChanges) {
+    if (changes.color.currentValue !== changes.color.previousValue) {
+      this._textColorUpdate();
+    }
   }
 
   private _clearColor() {
