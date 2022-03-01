@@ -41,6 +41,8 @@ export class FsSelectButtonDirective implements OnInit, OnChanges {
     this.width = width;
   };
 
+  @Input() public buttonType: 'raised' | 'basic' | 'flat' = 'raised';
+
   @HostBinding('style.max-width')
   public width  = '';
 
@@ -50,13 +52,14 @@ export class FsSelectButtonDirective implements OnInit, OnChanges {
   constructor(private renderer: Renderer2, private hostElement: ElementRef) { }
 
   public ngOnInit() {
-    this.renderer.addClass(this.hostElement.nativeElement, 'mat-raised-button');
+    const buttonType = this.buttonType === 'basic' ? 'mat-button' : `mat-${this.buttonType}-button`;
+    this.renderer.addClass(this.hostElement.nativeElement, buttonType);
     this.renderer.addClass(this.hostElement.nativeElement, 'fs-select-button');
     this._textColorUpdate();
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    if (changes.color.currentValue !== changes.color.previousValue) {
+    if (changes.color && changes.color.currentValue !== changes.color.previousValue) {
       this._textColorUpdate();
     }
   }
@@ -73,7 +76,6 @@ export class FsSelectButtonDirective implements OnInit, OnChanges {
   }
 
   private _textColorUpdate() {
-
     const value = this.hostElement.nativeElement.querySelector('.mat-select-trigger .mat-select-value');
     const arrow = this.hostElement.nativeElement.querySelector('.mat-select-arrow-wrapper .mat-select-arrow');
 
