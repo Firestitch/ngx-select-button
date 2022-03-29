@@ -39,7 +39,7 @@ const routes: Routes = [
     MatButtonModule,
     FsDrawerModule,
     FsLabelModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     FsMessageModule.forRoot(),
     FsExampleModule.forRoot(),
     ToastrModule.forRoot({ preventDuplicates: true }),
