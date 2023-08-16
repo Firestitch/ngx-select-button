@@ -10,6 +10,12 @@
     color: inherit;
   }
 
+  .mat-select-trigger {
+    display: flex;
+    align-items: center;
+    height: auto;
+  }
+
   &:not(.mat-basic) {
     .mat-select-arrow,
     .mat-select-value {
