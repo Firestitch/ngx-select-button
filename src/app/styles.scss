@@ -1,5 +1,4 @@
 .mat-select.fs-select-button {
-
   flex-direction: row;
   align-items: center;
   width: auto;
@@ -35,5 +34,19 @@
     max-width: 150px;
     display: block;
     margin-right: 10px;
+  }
+
+  &.mat-select-disabled {
+    background-color: rgba(0, 0, 0, 0.12);
+    box-shadow: none;
+    pointer-events: none;
+
+    .mat-select-value-text {
+      color: rgba(0, 0, 0, 0.26);
+    }
+
+    .mat-select-arrow {
+      border-top-color: rgba(0, 0, 0, 0.26);
+    }
   }
 }
