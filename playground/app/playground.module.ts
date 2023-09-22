@@ -13,12 +13,9 @@ import { FsMessageModule } from '@firestitch/message';
 import { FsDrawerModule } from '@firestitch/drawer';
 import { FsLabelModule } from '@firestitch/label';
 
-import { ToastrModule } from 'ngx-toastr';
-
 import { AppComponent } from './app.component';
 import { AppMaterialModule } from './material.module';
-import {  ExampleComponent,
-          ExamplesComponent } from './components';
+import { ExampleComponent, ExamplesComponent } from './components';
 import { ConfigureComponent } from './components/configure';
 
 
@@ -27,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     FsSelectButtonModule,
@@ -42,7 +39,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     FsMessageModule.forRoot(),
     FsExampleModule.forRoot(),
-    ToastrModule.forRoot({ preventDuplicates: true }),
   ],
   entryComponents: [
     ConfigureComponent
