@@ -24,6 +24,12 @@
       {{ item.name }}
     </mat-option>
   </mat-select>
+  
+  <mat-select [(ngModel)]="basic" fsSelectButton placeholder="Stroked Basic" buttonType="stroked">
+    <mat-option *ngFor="let item of values" [value]="item.value">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
 
   <mat-select [(ngModel)]="basic" fsSelectButton placeholder="Unselected Basic" buttonType="basic">
     <mat-option *ngFor="let item of values" [value]="item.value">

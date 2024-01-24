@@ -1,15 +1,15 @@
 import {
   Directive,
-  Input,
   ElementRef,
-  Renderer2,
-  OnInit,
   HostBinding,
+  Input,
   OnChanges,
+  OnInit,
+  Renderer2,
   SimpleChanges,
 } from '@angular/core';
 
-import { ColorType, Color } from '../../enums';
+import { Color, ColorType } from '../../enums';
 
 
 @Directive({
@@ -41,7 +41,7 @@ export class FsSelectButtonDirective implements OnInit, OnChanges {
     this.width = width;
   };
 
-  @Input() public buttonType: 'raised' | 'basic' | 'flat' = 'raised';
+  @Input() public buttonType: 'raised' | 'basic' | 'flat' | 'stroked' = 'raised';
 
   @HostBinding('style.max-width')
   public width  = '';
