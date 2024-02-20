@@ -5,7 +5,7 @@ import { Color } from '@firestitch/select-button';
 
 @Component({
   selector: 'example',
-  templateUrl: 'example.component.html',
+  templateUrl: './example.component.html',
 })
 export class ExampleComponent {
 
