@@ -7,19 +7,17 @@ import { FsSelectButtonDirective } from './directives/select-button/select-butto
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatSelectModule,
-    FormsModule
-  ],
-  exports: [
-    FsSelectButtonDirective
-  ],
-  entryComponents: [
-  ],
-  declarations: [
-    FsSelectButtonDirective
-  ]
+    imports: [
+        CommonModule,
+        MatSelectModule,
+        FormsModule
+    ],
+    exports: [
+        FsSelectButtonDirective
+    ],
+    declarations: [
+        FsSelectButtonDirective
+    ]
 })
 export class FsSelectButtonModule {
   // static forRoot(): ModuleWithProviders {
