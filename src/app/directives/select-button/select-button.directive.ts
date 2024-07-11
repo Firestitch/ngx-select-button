@@ -4,21 +4,27 @@ import {
   HostBinding,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
 
+import { MatSelect } from '@angular/material/select';
+
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { Color, ColorType } from '../../enums';
 
 
 @Directive({
-  selector: '[fsSelectButton]'
+  selector: '[fsSelectButton]',
 })
-export class FsSelectButtonDirective implements OnInit, OnChanges {
+export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
 
   @Input()
-  set color(value: Color | string) {
+  public set color(value: Color | string) {
     if (!value) {
       return;
     }
@@ -28,34 +34,55 @@ export class FsSelectButtonDirective implements OnInit, OnChanges {
     this._color = value;
 
     if (value.match(/^#/)) {
-      this.renderer.setStyle(this.hostElement.nativeElement, 'background-color', value);
+      this._renderer.setStyle(this._hostElement.nativeElement, 'background-color', value);
       this._colorType = ColorType.Style;
     } else {
-      this.renderer.addClass(this.hostElement.nativeElement, 'mat-' + value);
+      this._renderer.addClass(this._hostElement.nativeElement, `mat-${  value}`);
       this._colorType = ColorType.Klass;
     }
   }
 
   @Input('width')
-  set setWidth(width) {
+  public set setWidth(width) {
     this.width = width;
-  };
+  }
 
   @Input() public buttonType: 'raised' | 'basic' | 'flat' | 'stroked' = 'raised';
+  @Input() public deselectOnChange = true;
 
   @HostBinding('style.max-width')
   public width  = '';
 
   private _color: Color | string = Color.Basic;
   private _colorType: ColorType = null;
-
-  constructor(private renderer: Renderer2, private hostElement: ElementRef) { }
+  private _destroy$ = new Subject();
+  
+  constructor(
+    private _renderer: Renderer2, 
+    private _hostElement: ElementRef,
+    private _select: MatSelect,
+  ) { }
+  
+  public ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
 
   public ngOnInit() {
     const buttonType = this.buttonType === 'basic' ? 'mat-button' : `mat-${this.buttonType}-button`;
-    this.renderer.addClass(this.hostElement.nativeElement, buttonType);
-    this.renderer.addClass(this.hostElement.nativeElement, 'fs-select-button');
+    this._renderer.addClass(this._hostElement.nativeElement, buttonType);
+    this._renderer.addClass(this._hostElement.nativeElement, 'fs-select-button');
     this._textColorUpdate();
+
+    if(this.deselectOnChange) {
+      this._select.selectionChange
+        .pipe(
+          takeUntil(this._destroy$),
+        )
+        .subscribe(() => {
+          this._select.writeValue(null);
+        });
+    }
   }
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -66,9 +93,9 @@ export class FsSelectButtonDirective implements OnInit, OnChanges {
 
   private _clearColor() {
     if (this._colorType === ColorType.Klass) {
-      this.renderer.removeClass(this.hostElement.nativeElement, 'mat-' + this._color);
+      this._renderer.removeClass(this._hostElement.nativeElement, `mat-${  this._color}`);
     } else if (this._colorType === ColorType.Style) {
-      this.renderer.removeStyle(this.hostElement.nativeElement, 'background-color');
+      this._renderer.removeStyle(this._hostElement.nativeElement, 'background-color');
     }
 
     this._color = null;
@@ -76,8 +103,10 @@ export class FsSelectButtonDirective implements OnInit, OnChanges {
   }
 
   private _textColorUpdate() {
-    const value = this.hostElement.nativeElement.querySelector('.mat-select-trigger .mat-select-value');
-    const arrow = this.hostElement.nativeElement.querySelector('.mat-select-arrow-wrapper .mat-select-arrow');
+    const value = this._hostElement.nativeElement
+      .querySelector('.mat-select-trigger .mat-select-value');
+    const arrow = this._hostElement.nativeElement
+      .querySelector('.mat-select-arrow-wrapper .mat-select-arrow');
 
     let textColor = null;
     switch (this._color) {
@@ -88,7 +117,7 @@ export class FsSelectButtonDirective implements OnInit, OnChanges {
         textColor = '#fff';
     }
 
-    this.renderer.setStyle(value, 'color', textColor);
-    this.renderer.setStyle(arrow, 'color', textColor);
+    this._renderer.setStyle(value, 'color', textColor);
+    this._renderer.setStyle(arrow, 'color', textColor);
   }
 }

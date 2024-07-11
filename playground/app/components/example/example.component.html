@@ -1,25 +1,49 @@
-<div fxLayout="row" fxLayoutGap="10px">
-  <mat-select [(ngModel)]="basic" fsSelectButton placeholder="Unselected">
+<div class="fs-row.gap-sm.wrap">
+  <mat-select 
+      [(ngModel)]="basic" 
+      fsSelectButton 
+      placeholder="Unselected">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>
   </mat-select>
-  <mat-select [(ngModel)]="basic" fsSelectButton [color]="Color.Primary" placeholder="Unselected">
+  <mat-select 
+      [(ngModel)]="primary" 
+      fsSelectButton 
+      
+      [deselectOnChange]="false" 
+      [color]="Color.Primary" 
+      placeholder="Unselected">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>
   </mat-select>
-  <mat-select [(ngModel)]="basic" fsSelectButton [color]="Color.Accent" placeholder="Unselected">
+  <mat-select 
+      [(ngModel)]="accent" 
+      fsSelectButton
+      [deselectOnChange]="false" 
+      [color]="Color.Accent" 
+      placeholder="Unselected">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>
   </mat-select>
-  <mat-select [(ngModel)]="basic" fsSelectButton [color]="Color.Warn" placeholder="Unselected">
+  <mat-select 
+      [(ngModel)]="warn" 
+      fsSelectButton
+      [deselectOnChange]="false" 
+      [color]="Color.Warn" 
+      placeholder="Unselected">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>
   </mat-select>
-  <mat-select [(ngModel)]="basic" fsSelectButton [color]="'#a0041e'" placeholder="Unselected">
+  <mat-select 
+      [(ngModel)]="basic" 
+      fsSelectButton 
+      [deselectOnChange]="false"
+      [color]="'#a0041e'" 
+      placeholder="Unselected">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>
