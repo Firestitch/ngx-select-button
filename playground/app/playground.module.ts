@@ -34,7 +34,7 @@ const routes: Routes = [
     MatButtonModule,
     FsDrawerModule,
     FsLabelModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(routes, {}),
     FsMessageModule.forRoot(),
     FsExampleModule.forRoot({ iframeObserveBody: true }),
   ],
