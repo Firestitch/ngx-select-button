@@ -1,51 +1,29 @@
-.mat-select.fs-select-button {
-  flex-direction: row;
+.mat-mdc-select.fs-select-button {
+  display: flex;
   align-items: center;
   width: auto;
   transition: none !important;
+  padding: 0;
+  min-width: 80px;
 
-  .mat-select-placeholder {
-    margin-right: 10px;
-    color: inherit;
+  .mat-mdc-select-value {
+    padding: 0 var(--mat-protected-button-horizontal-padding, 16px);
   }
 
-  .mat-select-trigger {
-    display: flex;
-    align-items: center;
-    height: auto;
+  .mat-mdc-select-arrow-wrapper {
+    padding-right: var(--mat-protected-button-horizontal-padding, 16px);
   }
 
-  &:not(.mat-basic) {
-    .mat-select-arrow,
-    .mat-select-value {
-      color: #fff;
-    }
-
-    .mat-select-value {
-      display: inline;
-    }
-  }
-
-  .mat-select-value {
-    max-width: initial;
-  }
-
-  .mat-select-value-text {
-    max-width: 200px;
-    display: block;
-    padding-right: 8px;
-  }
-
-  &.mat-select-disabled {
+  &.mat-mdc-select-disabled {
     background-color: rgba(0, 0, 0, 0.12);
     box-shadow: none;
     pointer-events: none;
 
-    .mat-select-value-text {
+    .mat-mdc-select-value {
       color: rgba(0, 0, 0, 0.26);
     }
 
-    .mat-select-arrow {
+    .mat-mdc-select-arrow {
       border-top-color: rgba(0, 0, 0, 0.26);
     }
   }

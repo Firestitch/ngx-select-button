@@ -69,8 +69,31 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   public ngOnInit() {
-    const buttonType = this.buttonType === 'basic' ? 'mat-button' : `mat-${this.buttonType}-button`;
-    this._renderer.addClass(this._hostElement.nativeElement, buttonType);
+    const buttonClasses = ['mdc-button','mat-mdc-button','mat-mdc-button-base'];
+
+    switch (this.buttonType) {
+      case 'raised': {
+        buttonClasses.push('mat-mdc-raised-button');
+    
+        break;
+      }
+      case 'flat': {
+        buttonClasses.push('mat-mdc-unelevated-button');
+    
+        break;
+      }
+      case 'stroked': {
+        buttonClasses.push('mat-mdc-outlined-button');
+    
+        break;
+      }
+    } 
+
+    buttonClasses
+      .forEach((cls) => {
+        this._renderer.addClass(this._hostElement.nativeElement, cls);
+      });
+
     this._renderer.addClass(this._hostElement.nativeElement, 'fs-select-button');
     this._textColorUpdate();
 
@@ -117,7 +140,7 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
         textColor = '#fff';
     }
 
-    this._renderer.setStyle(value, 'color', textColor);
-    this._renderer.setStyle(arrow, 'color', textColor);
+    // this._renderer.setStyle(value, 'color', textColor);
+    // this._renderer.setStyle(arrow, 'color', textColor);
   }
 }

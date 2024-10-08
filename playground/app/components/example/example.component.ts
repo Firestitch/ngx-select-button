@@ -6,6 +6,7 @@ import { Color } from '@firestitch/select-button';
 @Component({
   selector: 'example',
   templateUrl: './example.component.html',
+  styleUrl: './example.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExampleComponent {

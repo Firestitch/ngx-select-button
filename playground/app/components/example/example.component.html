@@ -59,4 +59,12 @@
       {{ item.name }}
     </mat-option>
   </mat-select>
+
+  <mat-select [(ngModel)]="basic" fsSelectButton placeholder="Unselected Basic" buttonType="basic" [disabled]="true">
+    <mat-option *ngFor="let item of values" [value]="item.value">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
 </div>
+
+<a mat-raised-button class="dummy">Dummy</a>
