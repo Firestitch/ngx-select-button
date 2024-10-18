@@ -8,36 +8,6 @@
     </mat-option>
   </mat-select>
   <mat-select 
-      [(ngModel)]="primary" 
-      fsSelectButton 
-      [deselectOnChange]="false" 
-      [color]="Color.Primary" 
-      placeholder="Unselected">
-    <mat-option *ngFor="let item of values" [value]="item.value">
-      {{ item.name }}
-    </mat-option>
-  </mat-select>
-  <mat-select 
-      [(ngModel)]="accent" 
-      fsSelectButton
-      [deselectOnChange]="false" 
-      [color]="Color.Accent" 
-      placeholder="Unselected">
-    <mat-option *ngFor="let item of values" [value]="item.value">
-      {{ item.name }}
-    </mat-option>
-  </mat-select>
-  <mat-select 
-      [(ngModel)]="warn" 
-      fsSelectButton
-      [deselectOnChange]="false" 
-      [color]="Color.Warn" 
-      placeholder="Unselected">
-    <mat-option *ngFor="let item of values" [value]="item.value">
-      {{ item.name }}
-    </mat-option>
-  </mat-select>
-  <mat-select 
       [(ngModel)]="basic" 
       fsSelectButton 
       [deselectOnChange]="false"
@@ -48,23 +18,39 @@
     </mat-option>
   </mat-select>
   
-  <mat-select [(ngModel)]="basic" fsSelectButton placeholder="Stroked Basic" buttonType="stroked">
+  <mat-select 
+      [(ngModel)]="basic" 
+      fsSelectButton 
+      [deselectOnChange]="false"
+      placeholder="Stroked Basic" 
+      buttonType="stroked">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>
   </mat-select>
 
-  <mat-select [(ngModel)]="basic" fsSelectButton placeholder="Unselected Basic" buttonType="basic">
+  <mat-select
+      [(ngModel)]="basic" 
+      fsSelectButton 
+      [deselectOnChange]="false"
+      placeholder="Unselected Basic" 
+      buttonType="basic">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>
   </mat-select>
 
-  <mat-select [(ngModel)]="basic" fsSelectButton placeholder="Unselected Basic" buttonType="basic" [disabled]="true">
+  <mat-select 
+      [(ngModel)]="basic" 
+      fsSelectButton 
+      [deselectOnChange]="false"
+      placeholder="Unselected Basic" 
+      buttonType="basic" 
+      [disabled]="true">
     <mat-option *ngFor="let item of values" [value]="item.value">
       {{ item.name }}
     </mat-option>
   </mat-select>
 </div>
 
-<a mat-raised-button class="dummy">Dummy</a>
+

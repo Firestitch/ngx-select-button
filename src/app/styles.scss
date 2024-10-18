@@ -5,6 +5,44 @@
   transition: none !important;
   padding: 0;
   min-width: 80px;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  height: var(--mdc-protected-button-container-height);
+  font-family: var(--mdc-protected-button-label-text-font, var(--mat-app-label-large-font));
+  font-size: var(--mdc-protected-button-label-text-size, var(--mat-app-label-large-size));
+  letter-spacing: var(--mdc-protected-button-label-text-tracking, var(--mat-app-label-large-tracking));
+  text-transform: var(--mdc-protected-button-label-text-transform);
+  font-weight: var(--mdc-protected-button-label-text-weight, var(--mat-app-label-large-weight));
+  border-radius: var(--mdc-protected-button-container-shape, var(--mat-app-corner-full));
+
+  &.mat-mdc-outlined-button {
+    border-color: var(--mdc-outlined-button-outline-color, var(--mat-app-outline));
+    border-style: solid;
+    border-width: var(--mdc-outlined-button-outline-width);
+  }
+
+  &.mat-mdc-raised-button {
+    box-shadow: var(--mdc-protected-button-container-elevation-shadow, var(--mat-app-level1));
+
+    &:hover {
+      box-shadow: var(--mdc-protected-button-hover-container-elevation-shadow, var(--mat-app-level2));
+    }
+  }
+
+  &.fs-select-button-dark {
+    &:not(.mat-mdc-select-empty) {
+      .mat-mdc-select-arrow,
+      .mat-mdc-select-value-text {
+        color: #fff;
+      }
+    }
+
+    &.mat-mdc-select-empty {
+      .mat-mdc-select-placeholder,
+      .mat-mdc-select-arrow {
+        color: #c5c5c5;
+      }
+    }
+  }
 
   .mat-mdc-select-value {
     padding: 0 var(--mat-protected-button-horizontal-padding, 16px);

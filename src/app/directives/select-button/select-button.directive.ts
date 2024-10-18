@@ -15,7 +15,7 @@ import { MatSelect } from '@angular/material/select';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { Color, ColorType } from '../../enums';
+import { Color } from '../../enums';
 
 
 @Directive({
@@ -23,43 +23,40 @@ import { Color, ColorType } from '../../enums';
 })
 export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
 
-  @Input()
-  public set color(value: Color | string) {
-    if (!value) {
-      return;
-    }
+  @Input() public color: Color | string;
 
-    this._clearColor();
+  @Input('minWidth')
+  public minWidth: number;
 
-    this._color = value;
-
-    if (value.match(/^#/)) {
-      this._renderer.setStyle(this._hostElement.nativeElement, 'background-color', value);
-      this._colorType = ColorType.Style;
-    } else {
-      this._renderer.addClass(this._hostElement.nativeElement, `mat-${  value}`);
-      this._colorType = ColorType.Klass;
-    }
-  }
+  @Input('maxWidth')
+  public maxWidth: number;
 
   @Input('width')
-  public set setWidth(width) {
-    this.width = width;
+  public width: number;
+
+  @HostBinding('style.min-width')
+  public get styleMinWidth() {
+    return this.minWidth ? `${this.minWidth}px` : null;
+  }
+  
+  @HostBinding('style.max-width')
+  public get styleMaxWidth() {
+    return this.maxWidth ? `${this.maxWidth}px` : null;
+  }
+
+  @HostBinding('style.width')
+  public get stylwidth() {
+    return this.width ? `${this.width}px` : null;
   }
 
   @Input() public buttonType: 'raised' | 'basic' | 'flat' | 'stroked' = 'raised';
   @Input() public deselectOnChange = true;
 
-  @HostBinding('style.max-width')
-  public width  = '';
-
-  private _color: Color | string = Color.Basic;
-  private _colorType: ColorType = null;
   private _destroy$ = new Subject();
   
   constructor(
     private _renderer: Renderer2, 
-    private _hostElement: ElementRef,
+    private _el: ElementRef,
     private _select: MatSelect,
   ) { }
   
@@ -91,11 +88,10 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
 
     buttonClasses
       .forEach((cls) => {
-        this._renderer.addClass(this._hostElement.nativeElement, cls);
+        this._renderer.addClass(this._el.nativeElement, cls);
       });
 
-    this._renderer.addClass(this._hostElement.nativeElement, 'fs-select-button');
-    this._textColorUpdate();
+    this._renderer.addClass(this._el.nativeElement, 'fs-select-button');
 
     if(this.deselectOnChange) {
       this._select.selectionChange
@@ -109,38 +105,29 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    if (changes.color && changes.color.currentValue !== changes.color.previousValue) {
-      this._textColorUpdate();
+    if (changes.color) {
+      const color = changes.color.currentValue;
+  
+      if(color) {
+        if (color.match(/^#/)) {
+          this._renderer.setStyle(this._el.nativeElement, 'background-color', color);
+        } else {
+          this._renderer.addClass(this._el.nativeElement, `mat-${color}`);
+        }     
+        this._renderer.addClass(this._el.nativeElement, 'fs-select-button-dark');         
+      } else {        
+        this.el.classList
+          .forEach((cls) => {
+            if(cls.startsWith('mat-')) {
+              this._renderer.removeClass(this._el.nativeElement, cls);
+            }
+          });
+      }
     }
   }
 
-  private _clearColor() {
-    if (this._colorType === ColorType.Klass) {
-      this._renderer.removeClass(this._hostElement.nativeElement, `mat-${  this._color}`);
-    } else if (this._colorType === ColorType.Style) {
-      this._renderer.removeStyle(this._hostElement.nativeElement, 'background-color');
-    }
-
-    this._color = null;
-    this._colorType = null;
+  public get el(): HTMLElement {
+    return this._el.nativeElement;
   }
 
-  private _textColorUpdate() {
-    // const value = this._hostElement.nativeElement
-    //   .querySelector('.mat-select-trigger .mat-select-value');
-    // const arrow = this._hostElement.nativeElement
-    //   .querySelector('.mat-select-arrow-wrapper .mat-select-arrow');
-
-    // let textColor = null;
-    // switch (this._color) {
-    //   case Color.Basic:
-    //     textColor = 'initial';
-    //     break;
-    //   default:
-    //     textColor = '#fff';
-    // }
-
-    // this._renderer.setStyle(value, 'color', textColor);
-    // this._renderer.setStyle(arrow, 'color', textColor);
-  }
 }
