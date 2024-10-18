@@ -58,7 +58,9 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
     private _renderer: Renderer2, 
     private _el: ElementRef,
     private _select: MatSelect,
-  ) { }
+  ) {
+    this._select.panelWidth = null;
+  }
   
   public ngOnDestroy(): void {
     this._destroy$.next(null);

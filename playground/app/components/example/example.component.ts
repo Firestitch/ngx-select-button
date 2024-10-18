@@ -20,7 +20,7 @@ export class ExampleComponent {
     { value: 'steak', name: 'Steak' },
     { value: 'pizza', name: 'Pizza' },
     { value: 'tacos', name: 'Tacos' },
-    { value: 'sour', name: 'Low Fat Sour Cream' },
+    { value: 'sour', name: 'Low Low Low Fat Sour Cream' },
   ];
 
   public Color = Color;
