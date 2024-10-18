@@ -126,19 +126,19 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   private _textColorUpdate() {
-    const value = this._hostElement.nativeElement
-      .querySelector('.mat-select-trigger .mat-select-value');
-    const arrow = this._hostElement.nativeElement
-      .querySelector('.mat-select-arrow-wrapper .mat-select-arrow');
+    // const value = this._hostElement.nativeElement
+    //   .querySelector('.mat-select-trigger .mat-select-value');
+    // const arrow = this._hostElement.nativeElement
+    //   .querySelector('.mat-select-arrow-wrapper .mat-select-arrow');
 
-    let textColor = null;
-    switch (this._color) {
-      case Color.Basic:
-        textColor = 'initial';
-        break;
-      default:
-        textColor = '#fff';
-    }
+    // let textColor = null;
+    // switch (this._color) {
+    //   case Color.Basic:
+    //     textColor = 'initial';
+    //     break;
+    //   default:
+    //     textColor = '#fff';
+    // }
 
     // this._renderer.setStyle(value, 'color', textColor);
     // this._renderer.setStyle(arrow, 'color', textColor);
