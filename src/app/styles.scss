@@ -29,19 +29,16 @@
   }
 
   &.fs-select-button-dark {
-    &:not(.mat-mdc-select-empty) {
       .mat-mdc-select-arrow,
-      .mat-mdc-select-value-text {
-        color: #fff;
-      }
-    }
-
-    &.mat-mdc-select-empty {
+      .mat-mdc-select-value-text,
       .mat-mdc-select-placeholder,
       .mat-mdc-select-arrow {
-        color: #c5c5c5;
+        color: #fff;
       }
-    }
+  }
+
+  .mat-mdc-select-placeholder {
+    color: inherit;
   }
 
   .mat-mdc-select-value {
