@@ -109,15 +109,15 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.color) {
       const color = changes.color.currentValue;
-  
-      if(color) {
+
+      if (color) {
         if (color.match(/^#/)) {
           this._renderer.setStyle(this._el.nativeElement, 'background-color', color);
         } else {
           this._renderer.addClass(this._el.nativeElement, `mat-${color}`);
-        }     
-        this._renderer.addClass(this._el.nativeElement, 'fs-select-button-dark');         
-      } else {        
+        }
+        this._renderer.addClass(this._el.nativeElement, 'fs-select-button-dark');
+      } else if (color === undefined) {
         this.el.classList
           .forEach((cls) => {
             if(cls.startsWith('mat-')) {
