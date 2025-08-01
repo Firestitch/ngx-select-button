@@ -49,7 +49,7 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
     return this.width ? `${this.width}px` : null;
   }
 
-  @Input() public buttonType: 'raised' | 'basic' | 'flat' | 'stroked' = 'raised';
+  @Input() public buttonType: 'raised' | 'basic' | 'flat' | 'stroked' = 'stroked';
   @Input() public deselectOnChange = true;
 
   private _destroy$ = new Subject();
