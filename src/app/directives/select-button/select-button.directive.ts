@@ -1,14 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  HostBinding,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  SimpleChanges,
-} from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, inject } from '@angular/core';
 
 import { MatSelect } from '@angular/material/select';
 
@@ -23,6 +13,10 @@ import { Color } from '../../enums';
     standalone: true,
 })
 export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
+  private _renderer = inject(Renderer2);
+  private _el = inject(ElementRef);
+  private _select = inject(MatSelect);
+
 
   @Input() public color: Color | string;
 
@@ -55,11 +49,7 @@ export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
 
   private _destroy$ = new Subject();
   
-  constructor(
-    private _renderer: Renderer2, 
-    private _el: ElementRef,
-    private _select: MatSelect,
-  ) {
+  constructor() {
     this._select.panelWidth = null;
   }
   

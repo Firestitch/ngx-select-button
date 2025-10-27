@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DrawerRef, DRAWER_DATA, DrawerDataProxy } from '@firestitch/drawer';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
@@ -13,12 +13,16 @@ import { MatOption } from '@angular/material/core';
     imports: [MatFormField, MatLabel, MatSelect, FormsModule, MatOption]
 })
 export class ConfigureComponent {
+  drawer = inject<DrawerRef<ConfigureComponent>>(DrawerRef);
+  data = inject<DrawerDataProxy<any>>(DRAWER_DATA);
+
   public config;
   public defaultConfig;
   public galleryService;
 
-  constructor(public drawer: DrawerRef<ConfigureComponent>,
-              @Inject(DRAWER_DATA) public data: DrawerDataProxy<any>) {
+  constructor() {
+    const data = this.data;
+
     this.config = data.config;
   }
 }
