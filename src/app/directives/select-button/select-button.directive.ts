@@ -19,7 +19,8 @@ import { Color } from '../../enums';
 
 
 @Directive({
-  selector: '[fsSelectButton]',
+    selector: '[fsSelectButton]',
+    standalone: true,
 })
 export class FsSelectButtonDirective implements OnInit, OnChanges, OnDestroy {
 
